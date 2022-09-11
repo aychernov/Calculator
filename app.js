@@ -1,0 +1,44 @@
+const calc = document.querySelector('.calc')
+const result = document.querySelector('#result')
+let haveDot = false;
+
+calc.addEventListener('click', function (e) {
+  if (e.target.innerText === "." && !haveDot) {
+    haveDot = true;
+  } else if (e.target.innerText === "." && haveDot < 3) {
+    return
+  }
+  if (!e.target.classList.contains('calc__btn')) return
+
+
+  const value = e.target.innerText
+
+  switch (value) {
+    case 'C':
+      result.innerText = ''
+      break
+
+    case '=':
+      if (result.innerText.search(/[^0-9*/+-.]/mi) != -1) return
+      try {
+        result.innerText = eval(result.innerText).toFixed(8)
+      } catch (e) {
+        result.innerText = `Error! ${e.message}`
+
+      }
+      break
+
+    case '←':
+      if (result.innerText) {
+        result.innerText = result.innerText.slice(0, -1);
+      }
+      break;
+
+    case '%':
+      result.innerText = result.innerText / 100
+
+    default:
+      result.innerText += value
+  }
+
+})
