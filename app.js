@@ -2,7 +2,7 @@ const calc = document.querySelector('.calc')
 const result = document.querySelector('#result')
 let haveDot = false;
 
-calc.addEventListener('click', function (e) {
+calc.addEventListener('click', function del(e) {
   if (e.target.innerText === "." && !haveDot) {
     haveDot = true;
   } else if (e.target.innerText === "." && haveDot < 3) {
@@ -23,7 +23,7 @@ calc.addEventListener('click', function (e) {
       try {
         result.innerText = eval(result.innerText).toFixed(8)
       } catch (e) {
-        result.innerText = `Error! ${e.message}`
+        result.innerText = `Err ${e.message}`
 
       }
       break
@@ -42,3 +42,11 @@ calc.addEventListener('click', function (e) {
   }
 
 })
+
+
+
+function go() {
+  if (document.getElementById("result").innerHTML.length > 10) {
+    event.preventDefault();
+  }
+}
