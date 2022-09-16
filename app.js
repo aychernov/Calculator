@@ -2,10 +2,10 @@ const calc = document.querySelector('.calc')
 const result = document.querySelector('#result')
 let haveDot = false;
 
-calc.addEventListener('click', function (e) {
+calc.addEventListener('click', function del(e) {
   if (e.target.innerText === "." && !haveDot) {
     haveDot = true;
-  } else if (e.target.innerText === "." && haveDot < 3) {
+  } else if (e.target.innerText === ".") {
     return
   }
   if (!e.target.classList.contains('calc__btn')) return
@@ -36,9 +36,22 @@ calc.addEventListener('click', function (e) {
 
     case '%':
       result.innerText = result.innerText / 100
+      break
+
+    case '.':
+      result.innerText += '.'
+      break
 
     default:
       result.innerText += value
   }
 
 })
+
+
+
+function go() {
+  if (document.getElementById("result").innerHTML.length > 10) {
+    event.preventDefault();
+  }
+}
