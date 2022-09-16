@@ -5,7 +5,7 @@ let haveDot = false;
 calc.addEventListener('click', function del(e) {
   if (e.target.innerText === "." && !haveDot) {
     haveDot = true;
-  } else if (e.target.innerText === ".") {
+  } else if (e.target.innerText === "." && haveDot < 3) {
     return
   }
   if (!e.target.classList.contains('calc__btn')) return
@@ -23,7 +23,7 @@ calc.addEventListener('click', function del(e) {
       try {
         result.innerText = eval(result.innerText).toFixed(8)
       } catch (e) {
-        result.innerText = `Error! ${e.message}`
+        result.innerText = `Err ${e.message}`
 
       }
       break
@@ -36,11 +36,6 @@ calc.addEventListener('click', function del(e) {
 
     case '%':
       result.innerText = result.innerText / 100
-      break
-
-    case '.':
-      result.innerText += '.'
-      break
 
     default:
       result.innerText += value
